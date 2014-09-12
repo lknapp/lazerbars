@@ -4,7 +4,7 @@ from rgb_converter import rgb256
 def print_colors(rgb_colors):
 
   def to_color_string(ansi_color):
-    length = 1;
+    length = 2;
 
     return "\033[48;5;" + ansi_color + "m" + " "*length + "\033[m"
 

@@ -5,6 +5,7 @@ from random import randrange
 from time import sleep
 from colorsys import hsv_to_rgb
 from rgb_converter import rgb256
+import math
 
 def increment_color(hsv_color):
   velocity = 0.01
@@ -28,26 +29,21 @@ def to_rgb_256(hsv_color_array):
   return rgb_256_colors
 
 
-#hsv_red_array = [[0, 1, 1]]
-#rgb_256_red_array = to_rgb_256(hsv_red_array)
-#rgb_256_color_code = rgb256(rgb_256_red_array[0])
-#
-#rgb_256_color = rgb256([255, 0, 0])
-#print(hsv_red_array)
-#print(rgb_256_red_array)
-#print(rgb_256_color_code)
-#print(rgb_256_color)
-
 hsv_colors = []
+frame = 0
 
 for i in range(64):
   hsv_colors.append([((4*i-1)%256)/256.0, 1, 1])
 
-print_colors(to_rgb_256(hsv_colors))
-
+def modify_sinusoidally(hsv_color):
+  velocity = math.sin(math.radians(frame*5))/100.0
+  hsv_color[0] += velocity
+  hsv_color[0] = hsv_color[0]%1
 
 while True:
-  map(increment_color, hsv_colors)
+  frame += 1
+  map(modify_sinusoidally, hsv_colors)
+#  map(increment_color, hsv_colors)
 
   print_colors(to_rgb_256(hsv_colors))
   sleep(.01)
