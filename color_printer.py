@@ -7,7 +7,7 @@ def print_colors(hsv_colors):
   rgb_colors = (hsv_to_rgb256(hsv_colors))
 
   def to_color_string(ansi_color):
-    length = 2;
+    length = 1;
 
     return "\033[48;5;" + ansi_color + "m" + " "*length + "\033[m"
 
