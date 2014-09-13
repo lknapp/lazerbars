@@ -1,6 +1,26 @@
-#adapted from https://github.com/tehmaze/ansi
+from colorsys import hsv_to_rgb
 
-def rgb256(rgb_color):
+def hsv_to_rgb256(hsv_color_array):
+  #TODO: make more functional
+  rgb_256_colors = []
+  for i in range(len(hsv_color_array)): 
+    h = hsv_color_array[i][0]
+    s = hsv_color_array[i][1]
+    v = hsv_color_array[i][2]
+    (r, g, b) = hsv_to_rgb(h, s, v)
+    r *= 256
+    g *= 256
+    b *= 256
+    r = int(r) - 1
+    g = int(g) - 1
+    b = int(b) - 1
+    rgb_256_colors.append([r, g, b])
+  return rgb_256_colors
+
+
+def rgb256_to_rgb8(rgb_color):
+
+    #adapted from https://github.com/tehmaze/ansi
     r = rgb_color[0]
     g = rgb_color[1]
     b = rgb_color[2]
